@@ -7,7 +7,33 @@
         <link rel="stylesheet" href="styles.css">  
     </head>
     <body>
-
+        <div id="welcomeScreenContainer">
+            <div id="welcomeScreen">
+                <h1>Welcome to BattleShip</h1>
+                <div>
+                    <label for="player-name">Please Enter Your Name</label>
+                    <input type="text" id="player-name">
+                </div>
+                <button id="begin-button">Begin Battle</button>
+            </div>
+            <p id="background-credit">Photo by <a href="https://unsplash.com/@kylejeffreys?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kyle Johnson</a> on <a href="https://unsplash.com/s/photos/ocean-dark?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
+        </div>
+        <div class='hidden' id="main-container">
+            <a id="rules" href="https://www.hasbro.com/common/instruct/battleship.pdf"  target="_blank">Read The Rules Here</a>
+            <main>
+                <div>
+                    <h1 id="playerOneName"></h1>
+                    <div class="board" id="boardOne"></div>
+                    <p>Ships Still Alive:</p>
+                </div>
+                <h1>VS</h1>
+                <div>
+                    <h1 id="playerTwoName">Computer</h1>
+                    <div class="board" id="boardTwo"></div>
+                    <p>Ships Still Alive:</p>
+                </div>
+            </main>
+        </div>
         <script src="main.js"> </script>
     </body>
 </html>
