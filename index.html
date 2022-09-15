@@ -20,31 +20,32 @@
         </div>
         <div id="selectScreenContainer" class="hidden">
             <div id="selectShips">
-                <h1>Please Place Your Ships Below</h1>
+                <h1>Drag and Drop Your Ships Below</h1>
+                <p>The blue square is the first position of your ship</p>
                 <div  id="shipDisplay">
                     <div>
                         <div class="shipPair">
-                            <div draggable="true"t id="carrier"></div>
+                            <div class='draggable' draggable="true"t id="carrier"></div>
                             <p>Carrier</p>
                             <p>Length: 5 spaces</p>
                         </div>
                         <div class="shipPair">
-                            <div draggable="true" id="battleship"></div>
+                            <div class='draggable' draggable="true" id="battleship"></div>
                             <p>Battleship </p>
                             <p>Length: 4 spaces</p>
                         </div>
                         <div class="shipPair">
-                            <div draggable='true' id="cruiser"></div>
+                            <div class='draggable' draggable='true' id="cruiser"></div>
                             <p>Cruiser </p>
                             <p> Length: 3 spaces</p>
                         </div>
                         <div class="shipPair">
-                            <div draggable='true' id="submarine"></div>
+                            <div class='draggable' draggable='true' id="submarine"></div>
                             <p>Submarine</p>
                             <p> Length: 3 spaces</p>
                         </div>
                         <div class="shipPair">
-                            <div draggable='true' id="destroyer"></div>
+                            <div class='draggable' draggable='true' id="destroyer"></div>
                             <p>Destroyer </p>
                             <p>Length: 2 spaces</p>
                         </div>
@@ -52,7 +53,7 @@
                     <div id="selectBoard">
                     </div>
                 </div>
-                <button id="beginButton">Begin Battle</button>
+                <button class='hidden' id="beginButton">Begin Battle</button>
             </div>
         </div>
         <div class='hidden' id="mainContainer">
@@ -70,9 +71,9 @@
                     <div class="board" id="boardTwo"></div>
                 </div>
             </main>
+            <button id="gameOverButton">Show Game Over</button>
         </div>
-        <div id="gameOverContainer">
-
+        <div id="gameOverContainer" class="hidden">
         </div>
         <script src="main.js"> </script>
     </body>
