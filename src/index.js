@@ -1,6 +1,7 @@
 import {
   createGameBoard,
   showSelectionScreen,
+  showSelectBoard,
   showGameBoard,
   addPlayerName,
   newGame,
@@ -13,6 +14,7 @@ import {
   checkGameStatus,
   gameStatus,
 } from "./gamelogic";
+import { allowDrag, allowDrop, checkPositions } from "./draganddrop";
 
 const boardOne = document.getElementById("boardOne");
 const boardTwo = document.getElementById("boardTwo");
@@ -30,13 +32,17 @@ playerNameInput.addEventListener("input", function () {
 
 prepareButton.addEventListener("click", function () {
   showSelectionScreen();
-  addPlayerName(playerOneName, playerName);
-  createGameBoard(playerOne, boardOne);
-  createGameBoard(playerTwo, boardTwo);
+  showSelectBoard();
+  allowDrag();
+  allowDrop();
+  checkPositions();
 });
 
 beginButton.addEventListener("click", function () {
   showGameBoard();
+  addPlayerName(playerOneName, playerName);
+  createGameBoard(playerOne, boardOne);
+  createGameBoard(playerTwo, boardTwo);
 })
 
 beginButton.addEventListener("click", function () {
@@ -54,5 +60,9 @@ beginButton.addEventListener("click", function () {
     });
   });
 });
+
+const gameOverButton = document.getElementById('gameOverButton')
+
+gameOverButton.onclick = showGameOver
 
 newGameButton.onclick = newGame;

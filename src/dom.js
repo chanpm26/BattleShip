@@ -7,9 +7,15 @@ function showSelectionScreen() {
     "selectScreenContainer"
   );
   selectScreenContainer.classList.remove("hidden");
+}
+
+function showSelectBoard() {
   const selectBoard = document.getElementById("selectBoard");
   for (let i = 0; i < 100; i++) {
     let square = document.createElement("div");
+    square.classList.add('selectSquare');
+    square.classList.add('droppable');
+    square.setAttribute("set-id", i);
     selectBoard.appendChild(square);
   }
 }
@@ -30,11 +36,6 @@ function createGameBoard(player, board) {
     gameSquare.classList.add(player.playerName);
     gameSquare.setAttribute("data-id", i);
     board.appendChild(gameSquare);
-    if (player.gameBoard.board[i] != "") {
-      let shipIcon = document.createElement("img");
-      shipIcon.src = "/dist/ship.png";
-      gameSquare.appendChild(shipIcon);
-    }
   }
 }
 
@@ -54,7 +55,8 @@ function showGameOver(currentPlayer) {
   const mainContainer = document.getElementById("mainContainer");
   mainContainer.classList.add("hidden");
   const gameOverContainer = document.getElementById("gameOverContainer");
-  let displayWinnerText = document.createElement("p");
+  gameOverContainer.classList.remove('hidden')
+  let displayWinnerText = document.createElement("h1");
   displayWinnerText.innerText = `The game is over. ${currentPlayer} has won!`;
   gameOverContainer.appendChild(displayWinnerText);
   const newGameButton = document.createElement("button");
@@ -72,6 +74,7 @@ function showMessage(message) {
 export {
   createGameBoard,
   showSelectionScreen,
+  showSelectBoard,
   showGameBoard,
   addPlayerName,
   newGame,

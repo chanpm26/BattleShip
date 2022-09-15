@@ -1,19 +1,32 @@
 import { playerFactory } from "./factoryFunctions";
-import { showMessage } from './dom'
+import { showMessage } from "./dom";
+import { getRandomCoordinates, createComputerCoordinates } from './computercoordinates'
+import { getPositions, createShips } from './draganddrop'
 
 let playerOne = playerFactory("playerOne", "person");
-playerOne.gameBoard.placeShip("carrier", 5, [1, 2, 3, 4, 5]);
-playerOne.gameBoard.placeShip("battleship", 4, [40, 41, 42, 43]);
-playerOne.gameBoard.placeShip("submarine", 3, [57, 58, 59]);
-playerOne.gameBoard.placeShip("cruiser", 3, [27, 28, 29]);
-playerOne.gameBoard.placeShip("destroyer", 2, [99, 98]);
 
+
+beginButton.addEventListener('click', function(){
+  let positions = getPositions()
+  let ships = createShips(positions.boxID, positions.shipID)
+  playerOne.gameBoard.placeShip("carrier", ships.shipOne.length, ships.shipOne);
+  playerOne.gameBoard.placeShip("battleship", ships.shipTwo.length, ships.shipTwo);
+  playerOne.gameBoard.placeShip("submarine", ships.shipThree.length, ships.shipThree);
+  playerOne.gameBoard.placeShip("cruiser", ships.shipFour.length, ships.shipFour);
+  playerOne.gameBoard.placeShip("destroyer", ships.shipFive.length, ships.shipFive);
+})
+
+
+let computerCoordinates = createComputerCoordinates()
+console.log(computerCoordinates)
 let playerTwo = playerFactory("playerTwo", "Computer");
-playerTwo.gameBoard.placeShip("carrier", 5, [81, 82, 83, 84, 85]);
-playerTwo.gameBoard.placeShip("battleship", 4, [63, 64, 65, 66]);
-playerTwo.gameBoard.placeShip("submarine", 3, [22, 32, 42]);
-playerTwo.gameBoard.placeShip("cruiser", 3, [57, 58, 59]);
-playerTwo.gameBoard.placeShip("destroyer", 2, [79, 89]);
+playerTwo.gameBoard.placeShip("carrier", 5, computerCoordinates.firstShipCoordinates);
+playerTwo.gameBoard.placeShip("battleship", 4, computerCoordinates.secondShipCoordinates);
+playerTwo.gameBoard.placeShip("submarine", 3, computerCoordinates.thirdShipCoordinates);
+playerTwo.gameBoard.placeShip("cruiser", 3, computerCoordinates.fourthShipCoordinates);
+playerTwo.gameBoard.placeShip("destroyer", 2, computerCoordinates.firstShipCoordinates);
+
+let gameStatus = "";
 
 function disableSelfClicks(currentPlayer, boardOne, boardTwo) {
   if (currentPlayer == playerOne) {
@@ -38,34 +51,24 @@ function checkGameStatus(gameStatus) {
   return gameStatus;
 }
 
-let gameStatus = "";
-
-function getRandomCoordinates(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max-min) + min)
-}
-
-
 function playGameHelper(currentPlayer, opposingPlayer, tile, square) {
   let attack = currentPlayer.sendAttack(opposingPlayer.gameBoard, square);
   if (attack == "notvalid") {
-    showMessage('That move is not valid. Please pick another tile.');
-    return 'notvalid'
+    showMessage("That move is not valid. Please pick another tile.");
+    return "notvalid";
   }
   if (attack.attackStatus == true) {
     tile.style.backgroundColor = "green";
-    showMessage('')
+    showMessage("");
   } else if (attack == false) {
     tile.style.backgroundColor = "red";
-    showMessage('')
+    showMessage("");
   }
   if (attack.shipStatus == true) {
     showMessage("A ship becomes feast for the fishes!");
   }
   gameStatus = gameOver(opposingPlayer);
 }
-
 
 function playGame(currentPlayer, boardOne, boardTwo) {
   disableSelfClicks(currentPlayer, boardOne, boardTwo);
@@ -75,25 +78,40 @@ function playGame(currentPlayer, boardOne, boardTwo) {
       let square = tile.getAttribute("data-id");
       if (currentPlayer == playerOne) {
         let move = playGameHelper(currentPlayer, playerTwo, tile, square);
-        if (move != 'notvalid') {
-        currentPlayer = playerTwo;
-        disableSelfClicks(currentPlayer, boardOne, boardTwo);
-        playGame(currentPlayer, boardOne, boardTwo)
+        if (move != "notvalid") {
+          currentPlayer = playerTwo;
+          disableSelfClicks(currentPlayer, boardOne, boardTwo);
+          playGame(currentPlayer, boardOne, boardTwo);
         }
       }
     });
-  })
+  });
   if (currentPlayer == playerTwo) {
-    let randomSquare = getRandomCoordinates(0, 99)
-    let randomTile = document.querySelector(`[data-id="${randomSquare}"]`)
+    let randomSquare = getRandomCoordinates(0, 99);
+    let randomTile = document.querySelector(`[data-id="${randomSquare}"]`);
     setTimeout(() => {
-    let move = playGameHelper(currentPlayer, playerOne, randomTile, randomSquare);
-    if (move != 'notvalid') {
-    currentPlayer = playerOne;
-    disableSelfClicks(currentPlayer, boardOne, boardTwo);
-    }
-  }, 700)
-}}
+      let move = playGameHelper(
+        currentPlayer,
+        playerOne,
+        randomTile,
+        randomSquare
+      );
+      while (move == 'notvalid') {
+        let randomSquare = getRandomCoordinates(0, 99);
+        let randomTile = document.querySelector(`[data-id="${randomSquare}"]`);
+        move = playGameHelper(
+          currentPlayer,
+          playerOne,
+          randomTile,
+          randomSquare)
+      }
+      if (move != "notvalid") {
+        currentPlayer = playerOne;
+        disableSelfClicks(currentPlayer, boardOne, boardTwo);
+      }
+    }, 700);
+  }
+}
 
 export {
   playerOne,
@@ -101,5 +119,5 @@ export {
   playGame,
   gameOver,
   checkGameStatus,
-  gameStatus
-}
+  gameStatus,
+};
