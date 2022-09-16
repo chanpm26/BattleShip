@@ -1,5 +1,5 @@
 import { playerFactory } from "./factoryFunctions";
-import { showMessage } from "./dom";
+import { showMessage, showGameOver } from "./dom";
 import { getRandomCoordinates, createComputerCoordinates } from './computercoordinates'
 import { getPositions, createShips } from './draganddrop'
 
@@ -18,13 +18,13 @@ beginButton.addEventListener('click', function(){
 
 
 let computerCoordinates = createComputerCoordinates()
-console.log(computerCoordinates)
 let playerTwo = playerFactory("playerTwo", "Computer");
 playerTwo.gameBoard.placeShip("carrier", 5, computerCoordinates.firstShipCoordinates);
 playerTwo.gameBoard.placeShip("battleship", 4, computerCoordinates.secondShipCoordinates);
 playerTwo.gameBoard.placeShip("submarine", 3, computerCoordinates.thirdShipCoordinates);
 playerTwo.gameBoard.placeShip("cruiser", 3, computerCoordinates.fourthShipCoordinates);
-playerTwo.gameBoard.placeShip("destroyer", 2, computerCoordinates.firstShipCoordinates);
+playerTwo.gameBoard.placeShip("destroyer", 2, computerCoordinates.fifthShipCoordinates);
+console.log(playerTwo.gameBoard.board)
 
 let gameStatus = "";
 
@@ -50,6 +50,7 @@ function gameOver(opposingPlayer) {
 function checkGameStatus(gameStatus) {
   return gameStatus;
 }
+
 
 function playGameHelper(currentPlayer, opposingPlayer, tile, square) {
   let attack = currentPlayer.sendAttack(opposingPlayer.gameBoard, square);
@@ -82,6 +83,13 @@ function playGame(currentPlayer, boardOne, boardTwo) {
           currentPlayer = playerTwo;
           disableSelfClicks(currentPlayer, boardOne, boardTwo);
           playGame(currentPlayer, boardOne, boardTwo);
+        }
+        if (checkGameStatus(gameStatus) == true) {
+          if (currentPlayer == playerOne) {
+            showGameOver(playerOneName.textContent);
+          } else {
+            showGameOver("Computer");
+          }
         }
       }
     });

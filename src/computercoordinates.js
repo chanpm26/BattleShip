@@ -48,7 +48,7 @@ function createComputerCoordinates() {
   let fifthShipSecondNumber = getRandomCoordinates(0, 7).toString();
   let fifthShipFirstPosition = fifthShipFirstNumber + fifthShipSecondNumber;
   fifthShipFirstPosition = Number(fifthShipFirstPosition);
-  let fifthShipCoordinates = [fifthShipFirstPosition, fifthShipFirstPosition + 1, fifthShipFirstPosition + 2];
+  let fifthShipCoordinates = [fifthShipFirstPosition, fifthShipFirstPosition + 1];
   return {firstShipCoordinates, secondShipCoordinates, thirdShipCoordinates, fourthShipCoordinates, fifthShipCoordinates}
 }
 

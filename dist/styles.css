@@ -25,6 +25,7 @@ body {
     color: white;
     position: relative;
     bottom: 8vh;
+    font-family: 'Cinzel Decorative', cursive;
 }
 
 #backgroundCredit {
@@ -75,15 +76,20 @@ body {
     height: 100vh;
     background-image: url('./thomas-fields-TaROFjpUBCI-unsplash.jpg');
     background-size: 100vw;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: .1rem;
+    word-spacing: .1rem;
 }
 
 #selectShips > h1 {
-    margin-bottom: 0;
+    margin-bottom: -1.5rem;
+    font-size: 3rem;
 }
 
 #selectShips > p {
     margin-bottom: 0.5vh;
     font-style: italic;
+    font-size: 1.5rem;
 }
 
 #shipDisplay {
@@ -186,10 +192,14 @@ body {
 #beginButton {
     margin-top: 2vh;
     font-size: 1.2rem;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.1rem;
 }
 
 #rules {
-    font-size: 1.1rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
     position: absolute;
     top: 10px;
     left: 10px;
@@ -211,14 +221,22 @@ body {
     bottom: 15px;
     left: 50%;
     transform: translate(-50%);
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.1rem;
 }
 
 
 #mainContainer {
+    font-family: 'Cinzel Decorative', cursive;
     width: 100vw;
     height: 100vh;
     background-image: url('jeremy-bishop-G9i_plbfDgk-unsplash.jpg');
     background-size: 100vw;
+    
+}
+
+main h1 {
+    font-size: 1.8rem;
 }
 
 main {
@@ -267,6 +285,7 @@ main {
 }
 
 #gameOverContainer > h1 {
+    font-family: 'Bebas Neue', cursive;
     margin: 0;
     position: relative;
     bottom: 10vh;
@@ -276,4 +295,6 @@ main {
     position: relative;
     bottom: 8vh;
     font-size: 1.5rem;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 0.1rem;
 }

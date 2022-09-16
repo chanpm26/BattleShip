@@ -11,8 +11,6 @@ import {
   playerOne,
   playerTwo,
   playGame,
-  checkGameStatus,
-  gameStatus,
 } from "./gamelogic";
 import { allowDrag, allowDrop, checkPositions } from "./draganddrop";
 
@@ -47,22 +45,7 @@ beginButton.addEventListener("click", function () {
 
 beginButton.addEventListener("click", function () {
   playGame(currentPlayer, boardOne, boardTwo);
-  let coordinates = Array.from(document.getElementsByClassName("gameSquare"));
-  coordinates.forEach((tile) => {
-    tile.addEventListener("click", function () {
-      if (checkGameStatus(gameStatus) == true) {
-        if (currentPlayer == playerOne) {
-          showGameOver(playerOneName.textContent);
-        } else {
-          showGameOver("Computer");
-        }
-      }
-    });
-  });
 });
 
-const gameOverButton = document.getElementById('gameOverButton')
-
-gameOverButton.onclick = showGameOver
 
 newGameButton.onclick = newGame;
