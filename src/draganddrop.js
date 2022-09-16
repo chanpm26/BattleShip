@@ -19,7 +19,7 @@ function drag(e) {
 }
 
 function getCurrentShip(currentShip) {
-    return currentShip
+  return currentShip;
 }
 
 function drop(e) {
@@ -35,7 +35,6 @@ let allowDrag = function () {
     ship.addEventListener("dragstart", drag);
   });
 };
-
 
 function getPositions() {
   const selectBoxes = Array.from(document.getElementsByClassName("droppable"));
@@ -62,85 +61,85 @@ function checkPositions() {
   });
 }
 
-let allowDrop = function(selectBoxes) {
-    if (currentShip == "carrier") {
-      let allowableBoxes = selectBoxes
-        .slice(0, 6)
-        .concat(selectBoxes.slice(10, 16))
-        .concat(selectBoxes.slice(20, 26))
-        .concat(selectBoxes.slice(30, 36))
-        .concat(selectBoxes.slice(40, 46))
-        .concat(selectBoxes.slice(50, 56))
-        .concat(selectBoxes.slice(60, 66))
-        .concat(selectBoxes.slice(70, 76))
-        .concat(selectBoxes.slice(80, 86))
-        .concat(selectBoxes.slice(90, 96))
-        allowableBoxes.forEach((box) => {
-          box.addEventListener("dragover", activateDrop);
-          box.addEventListener("dragover", showHoverColor);
-          box.addEventListener("dragleave", removeHoverColor);
-          box.addEventListener("drop", drop);
-          box.addEventListener('drop', checkPositions)
-        });
-    } else if (currentShip == 'battleship') {
-      let allowableBoxes = selectBoxes
-        .slice(0, 7)
-        .concat(selectBoxes.slice(10, 17))
-        .concat(selectBoxes.slice(20, 27))
-        .concat(selectBoxes.slice(30, 37))
-        .concat(selectBoxes.slice(40, 47))
-        .concat(selectBoxes.slice(50, 57))
-        .concat(selectBoxes.slice(60, 67))
-        .concat(selectBoxes.slice(70, 77))
-        .concat(selectBoxes.slice(80, 87))
-        .concat(selectBoxes.slice(90, 97))
-        allowableBoxes.forEach((box) => {
-          box.addEventListener("dragover", activateDrop);
-          box.addEventListener("dragover", showHoverColor);
-          box.addEventListener("dragleave", removeHoverColor);
-          box.addEventListener("drop", drop);
-          box.addEventListener('drop', checkPositions)
-        });
-    } else if (currentShip == 'cruiser' || currentShip == 'submarine' ) {
-      let allowableBoxes = selectBoxes
-        .slice(0, 8)
-        .concat(selectBoxes.slice(10, 18))
-        .concat(selectBoxes.slice(20, 28))
-        .concat(selectBoxes.slice(30, 38))
-        .concat(selectBoxes.slice(40, 48))
-        .concat(selectBoxes.slice(50, 58))
-        .concat(selectBoxes.slice(60, 68))
-        .concat(selectBoxes.slice(70, 78))
-        .concat(selectBoxes.slice(80, 88))
-        .concat(selectBoxes.slice(90, 98))
-        allowableBoxes.forEach((box) => {
-          box.addEventListener("dragover", activateDrop);
-          box.addEventListener("dragover", showHoverColor);
-          box.addEventListener("dragleave", removeHoverColor);
-          box.addEventListener("drop", drop);
-          box.addEventListener('drop', checkPositions)
-        });
-    } else if (currentShip == 'destroyer') {
-      let allowableBoxes = selectBoxes
-        .slice(0, 9)
-        .concat(selectBoxes.slice(10, 19))
-        .concat(selectBoxes.slice(20, 29))
-        .concat(selectBoxes.slice(30, 39))
-        .concat(selectBoxes.slice(40, 49))
-        .concat(selectBoxes.slice(50, 59))
-        .concat(selectBoxes.slice(60, 69))
-        .concat(selectBoxes.slice(70, 79))
-        .concat(selectBoxes.slice(80, 89))
-        .concat(selectBoxes.slice(90, 99))
-        allowableBoxes.forEach((box) => {
-          box.addEventListener("dragover", activateDrop);
-          box.addEventListener("dragover", showHoverColor);
-          box.addEventListener("dragleave", removeHoverColor);
-          box.addEventListener("drop", drop);
-          box.addEventListener('drop', checkPositions)
-        });
-    }
-  };
+let allowDrop = function (selectBoxes) {
+  if (currentShip == "carrier") {
+    let allowableBoxes = selectBoxes
+      .slice(0, 6)
+      .concat(selectBoxes.slice(10, 16))
+      .concat(selectBoxes.slice(20, 26))
+      .concat(selectBoxes.slice(30, 36))
+      .concat(selectBoxes.slice(40, 46))
+      .concat(selectBoxes.slice(50, 56))
+      .concat(selectBoxes.slice(60, 66))
+      .concat(selectBoxes.slice(70, 76))
+      .concat(selectBoxes.slice(80, 86))
+      .concat(selectBoxes.slice(90, 96));
+    allowableBoxes.forEach((box) => {
+      box.addEventListener("dragover", activateDrop);
+      box.addEventListener("dragover", showHoverColor);
+      box.addEventListener("dragleave", removeHoverColor);
+      box.addEventListener("drop", drop);
+      box.addEventListener("drop", checkPositions);
+    });
+  } else if (currentShip == "battleship") {
+    let allowableBoxes = selectBoxes
+      .slice(0, 7)
+      .concat(selectBoxes.slice(10, 17))
+      .concat(selectBoxes.slice(20, 27))
+      .concat(selectBoxes.slice(30, 37))
+      .concat(selectBoxes.slice(40, 47))
+      .concat(selectBoxes.slice(50, 57))
+      .concat(selectBoxes.slice(60, 67))
+      .concat(selectBoxes.slice(70, 77))
+      .concat(selectBoxes.slice(80, 87))
+      .concat(selectBoxes.slice(90, 97));
+    allowableBoxes.forEach((box) => {
+      box.addEventListener("dragover", activateDrop);
+      box.addEventListener("dragover", showHoverColor);
+      box.addEventListener("dragleave", removeHoverColor);
+      box.addEventListener("drop", drop);
+      box.addEventListener("drop", checkPositions);
+    });
+  } else if (currentShip == "cruiser" || currentShip == "submarine") {
+    let allowableBoxes = selectBoxes
+      .slice(0, 8)
+      .concat(selectBoxes.slice(10, 18))
+      .concat(selectBoxes.slice(20, 28))
+      .concat(selectBoxes.slice(30, 38))
+      .concat(selectBoxes.slice(40, 48))
+      .concat(selectBoxes.slice(50, 58))
+      .concat(selectBoxes.slice(60, 68))
+      .concat(selectBoxes.slice(70, 78))
+      .concat(selectBoxes.slice(80, 88))
+      .concat(selectBoxes.slice(90, 98));
+    allowableBoxes.forEach((box) => {
+      box.addEventListener("dragover", activateDrop);
+      box.addEventListener("dragover", showHoverColor);
+      box.addEventListener("dragleave", removeHoverColor);
+      box.addEventListener("drop", drop);
+      box.addEventListener("drop", checkPositions);
+    });
+  } else if (currentShip == "destroyer") {
+    let allowableBoxes = selectBoxes
+      .slice(0, 9)
+      .concat(selectBoxes.slice(10, 19))
+      .concat(selectBoxes.slice(20, 29))
+      .concat(selectBoxes.slice(30, 39))
+      .concat(selectBoxes.slice(40, 49))
+      .concat(selectBoxes.slice(50, 59))
+      .concat(selectBoxes.slice(60, 69))
+      .concat(selectBoxes.slice(70, 79))
+      .concat(selectBoxes.slice(80, 89))
+      .concat(selectBoxes.slice(90, 99));
+    allowableBoxes.forEach((box) => {
+      box.addEventListener("dragover", activateDrop);
+      box.addEventListener("dragover", showHoverColor);
+      box.addEventListener("dragleave", removeHoverColor);
+      box.addEventListener("drop", drop);
+      box.addEventListener("drop", checkPositions);
+    });
+  }
+};
 
 function createShipCoordinates(ship, box) {
   box = Number(box);
@@ -171,4 +170,12 @@ function createShips(boxes, ships) {
   return { shipOne, shipTwo, shipThree, shipFour, shipFive };
 }
 
-export { allowDrag, allowDrop, getPositions, getCurrentShip, currentShip, checkPositions, createShips };
+export {
+  allowDrag,
+  allowDrop,
+  getPositions,
+  getCurrentShip,
+  currentShip,
+  checkPositions,
+  createShips,
+};

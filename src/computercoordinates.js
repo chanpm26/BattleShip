@@ -35,7 +35,7 @@ function createComputerCoordinates() {
     thirdShipFirstPosition + 1,
     thirdShipFirstPosition + 2,
   ];
-  let fourthShipFirstNumber = "9"
+  let fourthShipFirstNumber = "9";
   let fourthShipSecondNumber = getRandomCoordinates(0, 7).toString();
   let fourthShipFirstPosition = fourthShipFirstNumber + fourthShipSecondNumber;
   fourthShipFirstPosition = Number(fourthShipFirstPosition);
@@ -48,8 +48,17 @@ function createComputerCoordinates() {
   let fifthShipSecondNumber = getRandomCoordinates(0, 7).toString();
   let fifthShipFirstPosition = fifthShipFirstNumber + fifthShipSecondNumber;
   fifthShipFirstPosition = Number(fifthShipFirstPosition);
-  let fifthShipCoordinates = [fifthShipFirstPosition, fifthShipFirstPosition + 1];
-  return {firstShipCoordinates, secondShipCoordinates, thirdShipCoordinates, fourthShipCoordinates, fifthShipCoordinates}
+  let fifthShipCoordinates = [
+    fifthShipFirstPosition,
+    fifthShipFirstPosition + 1,
+  ];
+  return {
+    firstShipCoordinates,
+    secondShipCoordinates,
+    thirdShipCoordinates,
+    fourthShipCoordinates,
+    fifthShipCoordinates,
+  };
 }
 
-export {getRandomCoordinates, createComputerCoordinates}
+export { getRandomCoordinates, createComputerCoordinates };

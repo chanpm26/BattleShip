@@ -13,8 +13,8 @@ function showSelectBoard() {
   const selectBoard = document.getElementById("selectBoard");
   for (let i = 0; i < 100; i++) {
     let square = document.createElement("div");
-    square.classList.add('selectSquare');
-    square.classList.add('droppable');
+    square.classList.add("selectSquare");
+    square.classList.add("droppable");
     square.setAttribute("set-id", i);
     selectBoard.appendChild(square);
   }
@@ -52,18 +52,14 @@ function newGame() {
 }
 
 function showGameOver(currentPlayer) {
+  const gameOverContainer = document.getElementById("gameOverContainer");
+  let displayWinnerText = document.getElementById("gameWinnerText");
+  displayWinnerText.innerText = `The game is over. ${currentPlayer} has won!`;
   const mainContainer = document.getElementById("mainContainer");
   mainContainer.classList.add("hidden");
-  const gameOverContainer = document.getElementById("gameOverContainer");
-  gameOverContainer.classList.remove('hidden')
-  let displayWinnerText = document.createElement("h1");
-  displayWinnerText.innerText = `The game is over. ${currentPlayer} has won!`;
-  gameOverContainer.appendChild(displayWinnerText);
-  const newGameButton = document.createElement("button");
-  newGameButton.textContent = "Start New Game";
-  newGameButton.classList.add("newgame");
+  gameOverContainer.classList.remove("hidden");
+  const newGameButton = document.getElementById("startNewGameButton");
   newGameButton.onclick = newGame;
-  gameOverContainer.appendChild(newGameButton);
 }
 
 function showMessage(message) {
