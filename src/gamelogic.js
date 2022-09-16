@@ -55,7 +55,9 @@ function checkGameStatus(gameStatus) {
 function playGameHelper(currentPlayer, opposingPlayer, tile, square) {
   let attack = currentPlayer.sendAttack(opposingPlayer.gameBoard, square);
   if (attack == "notvalid") {
+    if (currentPlayer == playerOne) {
     showMessage("That move is not valid. Please pick another tile.");
+    }
     return "notvalid";
   }
   if (attack.attackStatus == true) {
@@ -69,7 +71,10 @@ function playGameHelper(currentPlayer, opposingPlayer, tile, square) {
     showMessage("A ship becomes feast for the fishes!");
   }
   gameStatus = gameOver(opposingPlayer);
+  return attack
 }
+
+let lastComputerMove = ''
 
 function playGame(currentPlayer, boardOne, boardTwo) {
   disableSelfClicks(currentPlayer, boardOne, boardTwo);
@@ -86,15 +91,40 @@ function playGame(currentPlayer, boardOne, boardTwo) {
         }
         if (checkGameStatus(gameStatus) == true) {
           if (currentPlayer == playerOne) {
-            showGameOver(playerOneName.textContent);
-          } else {
             showGameOver("Computer");
+          } else {
+            showGameOver(playerOneName.textContent);
           }
         }
       }
     });
   });
   if (currentPlayer == playerTwo) {
+    if (lastComputerMove != '') {
+      let neighborSquare = lastComputerMove + 1
+      let tile = document.querySelector(`[data-id="${neighborSquare}"]`)
+      setTimeout(() => {
+      let move = playGameHelper(currentPlayer, playerOne, tile, neighborSquare)
+      while (move == 'notvalid') {
+        let randomSquare = getRandomCoordinates(0, 99);
+        let randomTile = document.querySelector(`[data-id="${randomSquare}"]`);
+        move = playGameHelper(
+          currentPlayer,
+          playerOne,
+          randomTile,
+          randomSquare)
+      }
+      if (move != "notvalid") {
+        currentPlayer = playerOne;
+        disableSelfClicks(currentPlayer, boardOne, boardTwo);
+        if (move.attackStatus == true && move.shipStatus == false) {
+          lastComputerMove = neighborSquare
+        } else {
+          lastComputerMove = ''
+        }
+      }
+    }, 700);
+    } else {
     let randomSquare = getRandomCoordinates(0, 99);
     let randomTile = document.querySelector(`[data-id="${randomSquare}"]`);
     setTimeout(() => {
@@ -116,9 +146,15 @@ function playGame(currentPlayer, boardOne, boardTwo) {
       if (move != "notvalid") {
         currentPlayer = playerOne;
         disableSelfClicks(currentPlayer, boardOne, boardTwo);
+        if (move.attackStatus == true && move.shipStatus == false) {
+          lastComputerMove = randomSquare
+        } else {
+          lastComputerMove = ''
+        }
       }
     }, 700);
   }
+}
 }
 
 export {

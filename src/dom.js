@@ -43,7 +43,7 @@ function addPlayerName(player, playerName) {
   if (playerName != "") {
     player.textContent = playerName;
   } else {
-    player.textContent = "Anonymous Challenger's Board";
+    player.textContent = "Anonymous Challenger";
   }
 }
 

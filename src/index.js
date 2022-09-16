@@ -5,7 +5,6 @@ import {
   showGameBoard,
   addPlayerName,
   newGame,
-  showGameOver,
 } from "./dom";
 import {
   playerOne,
