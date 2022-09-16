@@ -4,7 +4,8 @@ import { getRandomCoordinates, createComputerCoordinates } from './computercoord
 import { getPositions, createShips } from './draganddrop'
 
 let playerOne = playerFactory("playerOne", "person");
-
+let gameStatus = "";
+let lastComputerMove = ''
 
 beginButton.addEventListener('click', function(){
   let positions = getPositions()
@@ -24,9 +25,7 @@ playerTwo.gameBoard.placeShip("battleship", 4, computerCoordinates.secondShipCoo
 playerTwo.gameBoard.placeShip("submarine", 3, computerCoordinates.thirdShipCoordinates);
 playerTwo.gameBoard.placeShip("cruiser", 3, computerCoordinates.fourthShipCoordinates);
 playerTwo.gameBoard.placeShip("destroyer", 2, computerCoordinates.fifthShipCoordinates);
-console.log(playerTwo.gameBoard.board)
 
-let gameStatus = "";
 
 function disableSelfClicks(currentPlayer, boardOne, boardTwo) {
   if (currentPlayer == playerOne) {
@@ -73,8 +72,6 @@ function playGameHelper(currentPlayer, opposingPlayer, tile, square) {
   gameStatus = gameOver(opposingPlayer);
   return attack
 }
-
-let lastComputerMove = ''
 
 function playGame(currentPlayer, boardOne, boardTwo) {
   disableSelfClicks(currentPlayer, boardOne, boardTwo);

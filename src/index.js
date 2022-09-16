@@ -11,7 +11,7 @@ import {
   playerTwo,
   playGame,
 } from "./gamelogic";
-import { allowDrag, allowDrop, checkPositions } from "./draganddrop";
+import { allowDrag, currentShip, getCurrentShip, allowDrop, checkPositions } from "./draganddrop";
 
 const boardOne = document.getElementById("boardOne");
 const boardTwo = document.getElementById("boardTwo");
@@ -31,9 +31,15 @@ prepareButton.addEventListener("click", function () {
   showSelectionScreen();
   showSelectBoard();
   allowDrag();
-  allowDrop();
-  checkPositions();
+  const selectBoxes = Array.from(document.getElementsByClassName("droppable"));
+  selectBoxes.forEach(box => {
+    box.addEventListener('dragover', function(){
+        currentShip = getCurrentShip(currentShip)
+        allowDrop(selectBoxes);
+    })
+  })
 });
+
 
 beginButton.addEventListener("click", function () {
   showGameBoard();
