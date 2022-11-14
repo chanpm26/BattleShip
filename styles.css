@@ -14,7 +14,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;    
+    min-height: 100vh;    
     width: 100vw;
     background-image: url('./Images/kyle-johnson-8Gl7Ew-q6D8-unsplash.jpg');
     background-size: contain;
@@ -74,7 +74,7 @@ body {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('./Images/thomas-fields-TaROFjpUBCI-unsplash.jpg');
     background-size: 100vw;
     font-family: 'Bebas Neue', cursive;
@@ -230,7 +230,7 @@ body {
 #mainContainer {
     font-family: 'Cinzel Decorative', cursive;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('./Images/jeremy-bishop-G9i_plbfDgk-unsplash.jpg');
     background-size: 100vw;
     
@@ -274,7 +274,7 @@ main {
 
 #gameOverContainer {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 2rem;
     display: flex;
     flex-direction: column;
